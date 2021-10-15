@@ -31,6 +31,7 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/composition-api/module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -64,5 +65,11 @@ export default {
         files: './src/**/*.{ts,js,vue}',
       },
     },
+  },
+
+  generate: {
+    // @nuxtjs/composition-apiのオプション設定。必要なさそうなら削除。
+    // https://composition-api.nuxtjs.org/getting-started/setup/
+    interval: 2000,
   },
 };
