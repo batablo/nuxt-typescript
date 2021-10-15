@@ -59,13 +59,15 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
-  typescript: {
-    typeCheck: {
-      eslint: {
-        files: './src/**/*.{ts,js,vue}',
-      },
-    },
-  },
+  // ランタイムlintの設定
+  // https://typescript.nuxtjs.org/ja/guide/lint#%E3%83%A9%E3%83%B3%E3%82%BF%E3%82%A4%E3%83%A0-lint
+  // typescript: {
+  //   typeCheck: {
+  //     eslint: {
+  //       files: './src/**/*.{ts,js,vue}',
+  //     },
+  //   },
+  // },
 
   generate: {
     // @nuxtjs/composition-apiのオプション設定。必要なさそうなら削除。
