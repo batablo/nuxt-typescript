@@ -4,14 +4,16 @@
       {{ form }}
     </div>
     <div class="form-wrapper">
-      <MyInput v-model="form.text" class="form" />
-      <MyTextArea v-model="form.longText" class="form" />
+      <MyInput v-model="form.text" class="form-border" />
+      <MyTextArea v-model="form.longText" class="form-border" />
+      <MyCheckbox v-model="form.checked">check</MyCheckbox>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from '@nuxtjs/composition-api';
+import MyCheckbox from './-MyCheckbox.vue';
 import MyInput from './-MyInput.vue';
 import MyTextArea from './-MyTextArea.vue';
 
@@ -24,7 +26,7 @@ interface State {
 }
 
 export default defineComponent({
-  components: { MyInput, MyTextArea },
+  components: { MyInput, MyTextArea, MyCheckbox },
   setup() {
     const form = reactive<State>({
       text: 'init text',
@@ -50,7 +52,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
 }
-.form {
+.form-border {
   border: solid 1px;
   margin: 8px 0;
 }
