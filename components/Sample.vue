@@ -4,11 +4,17 @@
     <ul>
       <li v-for="u in data.users" :key="u.id">{{ u.id }}{{ u.name }}</li>
     </ul>
+    <p>ユーザー件数: {{ userNum }}</p>
   </div>
 </template>
 
 <script>
-import { defineComponent, reactive, ref } from '@nuxtjs/composition-api';
+import {
+  computed,
+  defineComponent,
+  reactive,
+  ref,
+} from '@nuxtjs/composition-api';
 
 export default defineComponent({
   setup() {
@@ -27,7 +33,9 @@ export default defineComponent({
       title.value = 'タイトルが変更できる';
     }, 5000);
 
-    return { data, title };
+    const userNum = computed(() => data.users.length);
+
+    return { data, title, userNum };
   },
 });
 </script>
