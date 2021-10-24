@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent>
-      <InputName v-model="data.form.name" />
+      <InputName :value.sync="data.form.name" />
     </form>
     <UserList :users="data.users" />
   </div>

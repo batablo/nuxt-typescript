@@ -16,12 +16,12 @@ export default defineComponent({
     },
   },
   setup(_, context) {
-    // inputタグ内で直接書くなら、`$emit('input', $event.target.value)`
+    // inputタグ内で直接書くなら、`$emit('update:value', $event.target.value)`
     const inputHandler = (e) => {
-      context.emit('input', e.target.value);
+      context.emit('update:value', e.target.value);
 
       // setupの第二引数を{emit}にした場合
-      // emit('input', e.target.value);
+      // emit('update:value', e.target.value);
     };
 
     return { inputHandler };
