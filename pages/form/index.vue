@@ -7,6 +7,10 @@
       <MyInput v-model="form.text" class="form-border" />
       <MyTextArea v-model="form.longText" class="form-border" />
       <MyCheckbox v-model="form.checked">check</MyCheckbox>
+      <div>
+        <MyRadio v-model="form.picked" label="one">One</MyRadio>
+        <MyRadio v-model="form.picked" label="two">Two</MyRadio>
+      </div>
     </div>
   </div>
 </template>
@@ -15,6 +19,7 @@
 import { defineComponent, reactive } from '@nuxtjs/composition-api';
 import MyCheckbox from './-MyCheckbox.vue';
 import MyInput from './-MyInput.vue';
+import MyRadio from './-MyRadio.vue';
 import MyTextArea from './-MyTextArea.vue';
 
 interface State {
@@ -26,7 +31,7 @@ interface State {
 }
 
 export default defineComponent({
-  components: { MyInput, MyTextArea, MyCheckbox },
+  components: { MyInput, MyTextArea, MyCheckbox, MyRadio },
   setup() {
     const form = reactive<State>({
       text: 'init text',
