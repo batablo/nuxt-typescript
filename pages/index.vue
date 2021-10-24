@@ -1,5 +1,8 @@
 <template>
   <div>
+    <form @submit.prevent>
+      <InputName v-model="data.form.name" />
+    </form>
     <UserList :users="data.users" />
   </div>
 </template>
@@ -15,6 +18,9 @@ export default defineComponent({
         { id: 2, name: '田中紘一' },
         { id: 3, name: '山田太郎' },
       ],
+      form: {
+        name: '山田',
+      },
     });
 
     setTimeout(() => {
