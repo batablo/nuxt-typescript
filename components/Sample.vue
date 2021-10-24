@@ -8,7 +8,12 @@
       </div>
       <div>
         <label for="email">email</label>
-        <input id="email" v-model="data.form.email" type="text" />
+        <input
+          id="email"
+          ref="emailInput"
+          v-model="data.form.email"
+          type="text"
+        />
       </div>
       <div>
         <button @click="addUser">ユーザー追加</button>
@@ -29,6 +34,7 @@
 import {
   computed,
   defineComponent,
+  onMounted,
   reactive,
   ref,
   watch,
@@ -40,6 +46,8 @@ export default defineComponent({
       form: { name: '', email: '' },
       users: [],
     });
+
+    const emailInput = ref(null);
 
     const title = ref('タイトル');
 
@@ -69,7 +77,11 @@ export default defineComponent({
       );
     }, 3000);
 
-    return { data, title, userNum, addUser };
+    onMounted(() => {
+      emailInput.value.focus();
+    });
+
+    return { data, title, userNum, addUser, emailInput };
   },
 });
 </script>
