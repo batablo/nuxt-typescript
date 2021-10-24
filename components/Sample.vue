@@ -38,11 +38,7 @@ export default defineComponent({
   setup() {
     const data = reactive({
       form: { name: '', email: '' },
-      users: [
-        { id: 1, name: '山田太郎' },
-        { id: 2, name: '田中浩一' },
-        { id: 3, name: '鈴木花子' },
-      ],
+      users: [],
     });
 
     const title = ref('タイトル');
@@ -62,10 +58,16 @@ export default defineComponent({
       }
     );
 
-    // setTimeout(() => {
-    //   data.users.push({ id: 4, name: 'ジョンソン' });
-    //   title.value = 'タイトルが変更できる';
-    // }, 5000);
+    // created ... DOMにさわれることが保証されてない。APIからデータ取得する処理などを書く
+    setTimeout(() => {
+      data.users.push(
+        ...[
+          { id: 1, name: '山田太郎' },
+          { id: 2, name: '田中浩一' },
+          { id: 3, name: '鈴木花子' },
+        ]
+      );
+    }, 3000);
 
     return { data, title, userNum, addUser };
   },
