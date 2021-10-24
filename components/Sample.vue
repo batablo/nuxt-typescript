@@ -7,6 +7,10 @@
         <input id="name" v-model="data.form.name" type="text" />
       </div>
       <div>
+        <label for="email">email</label>
+        <input id="email" v-model="data.form.email" type="text" />
+      </div>
+      <div>
         <button @click="addUser">ユーザー追加</button>
       </div>
     </form>
@@ -14,7 +18,7 @@
       <p>ユーザー件数: {{ userNum }}</p>
       <ul>
         <li v-for="user in data.users" :key="user.id">
-          {{ user.id }}{{ user.name }}
+          {{ user.id }}:{{ user.name }}
         </li>
       </ul>
     </div>
@@ -27,12 +31,13 @@ import {
   defineComponent,
   reactive,
   ref,
+  watch,
 } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   setup() {
     const data = reactive({
-      form: { name: '' },
+      form: { name: '', email: '' },
       users: [
         { id: 1, name: '山田太郎' },
         { id: 2, name: '田中浩一' },
@@ -49,6 +54,13 @@ export default defineComponent({
       data.users.push({ id, name: data.form.name });
       data.form.name = '';
     };
+
+    watch(
+      () => data.form.name,
+      (currentName, prevName) => {
+        console.info(`currentName: ${currentName}, prevName: ${prevName}`);
+      }
+    );
 
     // setTimeout(() => {
     //   data.users.push({ id: 4, name: 'ジョンソン' });
