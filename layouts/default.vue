@@ -46,7 +46,7 @@
           </v-col>
 
           <v-col>
-            <v-sheet min-height="70vh" rounded="lg">
+            <v-sheet min-height="80vh" rounded="lg" class="pa-4">
               <nuxt />
             </v-sheet>
           </v-col>
