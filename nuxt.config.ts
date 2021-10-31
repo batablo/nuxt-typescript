@@ -1,6 +1,7 @@
 import colors from 'vuetify/es5/util/colors';
+import { NuxtConfig } from '@nuxt/types';
 
-export default {
+const config: NuxtConfig = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - nuxt-typescript',
@@ -16,11 +17,13 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  ssr: false,
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/firebase.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -35,7 +38,26 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    // `@nuxtjs/firebase`はv9以降のfirebaseに対応してない
+    // [
+    //   '@nuxtjs/firebase',
+    //   {
+    //     config: {
+    //       apiKey: 'AIzaSyAIysuFnDXqa7yzGarKgRoBrQVjEP41X8Y',
+    //       authDomain: 'batacook-a9a39.firebaseapp.com',
+    //       projectId: 'batacook-a9a39',
+    //       storageBucket: 'batacook-a9a39.appspot.com',
+    //       messagingSenderId: '139842308418',
+    //       appId: '1:139842308418:web:d15ef97311eac723ed20db',
+    //       measurementId: 'G-JVSLPYMGLP',
+    //     },
+    //     services: {
+    //       firestore: true,
+    //     },
+    //   },
+    // ],
+  ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -73,5 +95,8 @@ export default {
     // @nuxtjs/composition-apiのオプション設定。必要なさそうなら削除。
     // https://composition-api.nuxtjs.org/getting-started/setup/
     interval: 2000,
+    dir: 'public',
   },
 };
+
+export default config;

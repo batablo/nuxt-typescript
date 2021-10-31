@@ -13,16 +13,36 @@
       </div>
       <MySelect v-model="form.selected" :options="options" />
     </div>
+
+    <section class="container">
+      <div>
+        <h2>Write to Firestore.</h2>
+        <div>
+          <button @click="writeToFirestore">
+            <span>Write now</span>
+          </button>
+        </div>
+        <h2>Read from Firestore.</h2>
+        <div>
+          <button @click="readFromFirestore">
+            <span> Read now </span>
+          </button>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from '@nuxtjs/composition-api';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+
 import MyCheckbox from './-MyCheckbox.vue';
 import MyInput from './-MyInput.vue';
 import MyRadio from './-MyRadio.vue';
 import MySelect from './-MySelect.vue';
 import MyTextArea from './-MyTextArea.vue';
+import { db } from '~/plugins/firebase';
 
 interface State {
   text: string;
@@ -49,7 +69,32 @@ export default defineComponent({
       { label: 'C', value: 'c' },
     ];
 
-    return { form, options };
+    const writeToFirestore = async () => {
+      const ref = doc(db, 'testCollection', 'testDoc');
+      const document = {
+        text: 'Firebase 9 rocks!',
+      };
+      try {
+        await setDoc(ref, document);
+        alert('Success!');
+      } catch (e) {
+        alert('Error!');
+        console.error(e);
+      }
+    };
+
+    const readFromFirestore = async () => {
+      const ref = doc(db, 'testCollection', 'testDoc');
+      try {
+        const document = await getDoc(ref);
+        alert(document.data()?.text);
+      } catch (e) {
+        alert('Error!');
+        console.error(e);
+      }
+    };
+
+    return { form, options, writeToFirestore, readFromFirestore };
   },
 });
 </script>
@@ -62,5 +107,12 @@ export default defineComponent({
 .form-border {
   border: solid 1px;
   margin: 8px 0;
+}
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 </style>
