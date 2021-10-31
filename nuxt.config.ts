@@ -93,6 +93,7 @@ const config: NuxtConfig = {
     // @nuxtjs/composition-apiのオプション設定。必要なさそうなら削除。
     // https://composition-api.nuxtjs.org/getting-started/setup/
     interval: 2000,
+    dir: 'public',
   },
 };
 
