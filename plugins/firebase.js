@@ -12,6 +12,7 @@ const firebaseConfig = {
 };
 
 const apps = getApps();
+let firebaseApp;
 
 if (!apps.length) {
   firebaseApp = initializeApp(firebaseConfig);
@@ -19,5 +20,5 @@ if (!apps.length) {
   firebaseApp = apps[0];
 }
 
-const db = getFirestore(firebaseApp, {});
+const db = getFirestore(firebaseApp);
 export { db };
