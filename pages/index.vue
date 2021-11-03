@@ -1,33 +1,26 @@
 <template>
-  <div>
-    <form @submit.prevent>
-      <InputName :value.sync="data.form.name" />
-    </form>
-    <UserList :users="data.users" />
+  <div class="pt-10">
+    <v-img
+      :src="img"
+      min-height="300"
+      max-width="300"
+      height="500"
+      width="500"
+      class="mx-auto"
+    ></v-img>
+    <v-spacer></v-spacer>
+    <p class="text-h5 text-center bold">ゆっくりしてってや。</p>
   </div>
 </template>
 
 <script>
-import { defineComponent, reactive } from '@nuxtjs/composition-api';
+import { defineComponent, ref } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   setup() {
-    const data = reactive({
-      users: [
-        { id: 1, name: '加藤かな' },
-        { id: 2, name: '田中紘一' },
-        { id: 3, name: '山田太郎' },
-      ],
-      form: {
-        name: '山田',
-      },
-    });
+    const img = ref(require('../assets/images/topImage.jpg'));
 
-    setTimeout(() => {
-      data.users.push({ id: 4, name: '木下武' });
-    }, 3000);
-
-    return { data };
+    return { img };
   },
 });
 </script>
